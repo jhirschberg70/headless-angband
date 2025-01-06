@@ -1,0 +1,61 @@
+{
+  "buildPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "gcc-debug",
+      "name": "gcc-debug"
+    },
+    {
+      "configuration": "Release",
+      "configurePreset": "gcc-release",
+      "name": "gcc-release"
+    }
+  ],
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "binaryDir": "build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_EXTENSIONS": "OFF",
+        "CMAKE_C_FLAGS": "-Wall -Wextra -Wshadow",
+        "CMAKE_C_STANDARD": "99",
+        "CMAKE_C_STANDARD_REQUIRED": "ON"
+      },
+      "generator": "Ninja",
+      "hidden": true,
+      "name": "base"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc"
+      },
+      "hidden": true,
+      "name": "gcc-base"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      },
+      "inherits": [
+        "base",
+        "gcc-base"
+      ],
+      "name": "gcc-debug"
+    },
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "inherits": [
+        "base",
+        "gcc-base"
+      ],
+      "name": "gcc-release"
+    }
+  ],
+  "version": 6
+}
